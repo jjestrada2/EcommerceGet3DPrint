@@ -2,11 +2,10 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import{Jumbo} from "../components/index"
-import {Layout} from "../components/index"
 import {Seo} from "../components/index"
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <Seo title="Home" />
     <Jumbo/>
     <h1>Hi people</h1>
@@ -26,7 +25,7 @@ const IndexPage = () => (
       <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
       <Link to="/using-dsg">Go to "Using DSG"</Link>
     </p>
-  </Layout>
+  </>
 )
 
 export default IndexPage
