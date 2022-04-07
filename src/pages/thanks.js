@@ -12,7 +12,7 @@ export default function thanks() {
           <h2>Succes Purchase</h2>
           <p>we hope you enjoy your product</p>
           <p>See you later!</p>
-          <span rol='img' arial-label='emoji'>💙</span>
+          <span role='img' arial-label='emoji'>💙</span>
           <Link to='/'>
               <Button>Return to Catalog</Button>
           </Link>

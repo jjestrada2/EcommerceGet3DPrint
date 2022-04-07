@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `get3dprint`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `The best place to build your dreams`,
     author: `@juanjoseestrada`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },

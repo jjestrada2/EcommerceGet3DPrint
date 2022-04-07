@@ -1,15 +1,13 @@
 import React from 'react'
 import {StyledJumbo} from '../styles/components'
 
-export default function Jumbo() {
+export default function Jumbo({description}) {
   return (
    <StyledJumbo>
         <div>
             <h2>Consigue la mejor impresion 3D</h2>
         </div>
-        <small>
-            los mejores detalles para la persona mas especial
-        </small>
+        <small>{description}</small>
     </StyledJumbo> 
     
     )
