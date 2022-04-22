@@ -1,24 +1,14 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { render } from "react-dom"
 
-const Image = ({ name, alt }) => {
-  const data = useStaticQuery(graphql`
+export default  Image = ({ name, alt }) => {
+  return(
+  <StaticQuery(
     query {
-      icon: file(relativePath: { eq: "icon.png" }) {
-        childImageSharp {
-          gatsbyImageData(
-            width: 200
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
-        }
-      }
-    }
-  `)
-  return (
+  
+  render(
     <GatsbyImage image={getImage(data[name].childImageSharp)} alt={alt ?? ""} />
   )
-}
-
-export default Image
+/>
