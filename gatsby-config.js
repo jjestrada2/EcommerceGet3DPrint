@@ -1,3 +1,8 @@
+require("dotenv").config({
+  path:`.env.${process.env.NODE_ENV}`,
+})
+
+
 module.exports = {
   siteMetadata: {
     title: `get3dprint`,
@@ -10,6 +15,16 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    
+    {
+      resolve: `gatsby-source-stripe`,
+      options: {
+        objects: ["Price"],
+        secretKey: process.env.STRIPE_SK,
+        downloadFiles: false,
+      }
+    },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -33,13 +48,16 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    
+
     {
       //configuro typography plugin
       resolve:`gatsby-plugin-typography`,
         options:{
           pathToConfigModule:"src/utils/typography.js"
-        }
-    }
+        },
+    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
