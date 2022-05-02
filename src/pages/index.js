@@ -2,10 +2,10 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 import{Jumbo} from "../components/index"
 import {Seo} from "../components/index"
-import Checkout from "../components/checkout"
+
 
 export const query=graphql`
-query GET_DESCRIPTION {
+query GET_DATA {
   allSite {
     edges{
 				node{
@@ -17,20 +17,41 @@ query GET_DESCRIPTION {
   	  }
     
 	}
+  
+  allStripePrice(
+    filter: { active: { eq: true } }
+    sort: { fields: [unit_amount] }
+  ) {
+    edges {
+      node {
+        id
+        active
+        currency
+        unit_amount
+        product {
+          id
+          name
+          metadata{
+            img
+            description
+          }
+          
+        }
+      }
+    }
+  }
 }` 
 
-const IndexPage = ({data}) => (
+const IndexPage = ({data}) => {
+  console.log(data)
+  return(
   <>
     <Seo title="Home" />
     <Jumbo description={data.allSite.edges[0].node.siteMetadata.description}/>
-    <h1>Hi people</h1>
-    <Checkout />
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
     <Link to="/thanks/">Go to page 2</Link> <br />
 
   </>
-)
+)}
 
 
 export default IndexPage
