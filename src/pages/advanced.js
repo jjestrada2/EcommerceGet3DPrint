@@ -1,7 +1,7 @@
 import React from "react"
 import {Seo} from "../components/index"
 
-import Products from "../components/Products/Products"
+import Products from "../components/Products/ProductsDisplay"
 
 const AdvancedExamplePage = () => (
   <>
