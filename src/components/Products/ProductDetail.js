@@ -6,18 +6,19 @@ import{
     QtyButton,
     SizeSelect,
     StyledProductDetail,
-    QtySelect
+    QtySelect,
+    Button
 }from '../../styles/components'
-import {Seo} from "../index"
+import {Seo,Stars} from "../index"
 
 export default function ProductDetail(
     {
         id,
-        unit_mount,
+        unit_amount,
         product: { name, metadata },
       }
 ) {
-    const formatePrice=priceFormat(unit_mount)
+    const formatePrice=priceFormat(unit_amount)
     const [color,setColor]=useState(2)
     const [qty,setQty]=useState(1)
   return (
@@ -28,7 +29,10 @@ export default function ProductDetail(
             <Tag>Popular</Tag>
             <h2>{name}</h2>
             <b>USD{formatePrice}</b>
-            {metadata.color&&(
+            
+            <Stars/>
+            <small>{metadata.description}</small>
+            {true&&(
                 <SizeSelect select={color}>
                     <SizeButton onClick={()=>setColor(1)}>Red</SizeButton>
                     <SizeButton onClick={()=>setColor(2)}>Blue</SizeButton>
@@ -41,6 +45,7 @@ export default function ProductDetail(
                 <input type= 'text' disabled value={qty}/>
                 <QtyButton onClick={()=>setQty(qty+1)}>+</QtyButton>
             </QtySelect>
+            <Button>Add</Button>
 
         </div>
     </StyledProductDetail>
