@@ -45,7 +45,7 @@ export default function ProductDetail(
                 <input type= 'text' disabled value={qty}/>
                 <QtyButton onClick={()=>setQty(qty+1)}>+</QtyButton>
             </QtySelect>
-            <Button>Add</Button>
+            <Button>Add to Cart</Button>
 
         </div>
     </StyledProductDetail>

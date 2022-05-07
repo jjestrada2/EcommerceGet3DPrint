@@ -1,26 +1,15 @@
-import React from 'react'
-import {StyledJumbo} from '../styles/components'
-import { StaticImage } from "gatsby-plugin-image"
- 
+import React from "react"
+import { StyledJumbo } from "../styles/components"
+import { Image } from "./"
 
-export default function Jumbo({description}) {
-  
+export default function Jumbo({ description }) {
   return (
-   <StyledJumbo>
-        <div>
-            <h2>Consigue la mejor impresion 3D</h2>
-             <small>{description}</small>
-              <StaticImage
-                src="../images/icon.png"
-                alt="A dinosaur"
-                placeholder="blurred"
-                layout="fixed"
-                width={500}
-                height={200}
-    />
-        </div>
-        
-    </StyledJumbo> 
-    
-    )
-  }
+    <StyledJumbo>
+      <div>
+        <h2>¡Consigue el mejor swag exclusivo y especial de Platzi!</h2>
+        <small>{description}</small>
+      </div>
+      <Image name="icon" />
+    </StyledJumbo>
+  )
+}
