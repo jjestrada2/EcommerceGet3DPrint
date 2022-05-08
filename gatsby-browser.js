@@ -8,12 +8,15 @@
 const React= require('react')
 const Layout=require("./src/components/layout").default
 const {GlobalStyles}=require('./src/styles')
+const {CartProvider} = require('./src/context')
 
 exports.wrapRootElement=({element})=>(
     <>
-    <Layout>
+    <CartProvider>
         <GlobalStyles/>
-        {element}
-    </Layout>
+        <Layout>
+            {element}
+        </Layout>
+    </CartProvider>
     </>
 )
