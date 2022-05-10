@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect,useState } from 'react'
 import { Link } from 'gatsby'
 import { Button, StyledCart } from '../styles/components';
 import priceFormat from '../utils/priceFormat';
 import { CartContext } from '../context';
+
+
 export default function Cart() {
     const{cart}=useContext(CartContext)
+    const [total,setTotal]=useState(0)
+    
+    const getTotal=()=>{
+        setTotal(
+            cart.reduce((acc,current)=> acc +current.price*current.quantity,0)
+        )
+    }
+    useEffect(()=>{
+        getTotal()
+    },)
+
   return (
   <StyledCart>
       <h2>Cart</h2>
@@ -31,7 +44,7 @@ export default function Cart() {
       <nav>
           <div>
               <h3>Subtotal:</h3>
-              <small>Total</small>
+              <small>USD{priceFormat(total)}</small>
          </div> 
          <div> 
               <Link to ='/'>
