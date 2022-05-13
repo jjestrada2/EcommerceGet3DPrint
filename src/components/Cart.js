@@ -5,18 +5,42 @@ import priceFormat from '../utils/priceFormat';
 import { CartContext } from '../context';
 
 
+
 export default function Cart() {
     const{cart}=useContext(CartContext)
     const [total,setTotal]=useState(0)
+    const [stripe,setStripe]=useState()
     
-    const getTotal=()=>{
-        setTotal(
-            cart.reduce((acc,current)=> acc +current.price*current.quantity,0)
+    const getTotal = () => {
+      setTotal(
+        cart.reduce(
+          (acc, current) => acc + current.unit_amount * current.quantity,
+          0
         )
+      )
     }
-    useEffect(()=>{
-        getTotal()
-    },)
+    useEffect(() => {
+      setStripe(window.Stripe(process.env.STRIPE_PK))
+      getTotal()
+    }, [])
+
+    const handleBuy = async event => {
+      event.preventDefault()
+      let item = cart.map(({ id, quantity }) => ({
+        price: id,
+        quantity: quantity,
+      }))
+      console.log(item)
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: item,
+        mode: "payment",
+        successUrl: process.env.SUCCESS_REDIRECT,
+        cancelUrl: process.env.CANCEL_REDIRECT,
+      })
+      if (error) {
+        throw error
+      }
+    }
 
   return (
   <StyledCart>
@@ -50,9 +74,12 @@ export default function Cart() {
               <Link to ='/'>
                 <Button type='outline'>Back</Button>
               </Link>
-              <Button>Buy</Button>
+              <Button onClick={handleBuy}disabled={cart.length===0}>Buy</Button>
           </div>
       </nav>
   </StyledCart>
   )
 }
+
+
+
