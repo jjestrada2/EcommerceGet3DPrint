@@ -15,5 +15,5 @@ export default function Image({name}){
       }
     
   `)
-  return <GatsbyImage image={data[name].childImageSharp.gatsbyImageData} />
+  return <GatsbyImage image={data[name].childImageSharp.gatsbyImageData} alt="Portada"/>
 }
