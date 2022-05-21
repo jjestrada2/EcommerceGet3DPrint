@@ -8,21 +8,31 @@ import { loadStripe } from "@stripe/stripe-js";
 let stripePromise;
 const getStripe=()=>{
     if(!stripePromise){
-        stripePromise=loadStripe("pk_test_51Ks7u2Ihy7wEHtPZWwuEhpiKdtoD3gjaFpIK1JgUnFgVywVdnCYh4lhAxwo3hBESmgWyJQMU2xwgWJLXXd63XVUR00yVLHyj6e")
+      stripePromise=loadStripe(process.env.STRIPE_PK)
     }
     return stripePromise
 }
 
 export default function Cart() {
-    
+  
     const{cart}=useContext(CartContext)
     const [total,setTotal]=useState(0)
-    const item={
-        price: "price_1Kv2yaIhy7wEHtPZVgby1h7I",
-        quantity: 1
-    }
+
+    const getTotal=()=>{      
+      setTotal(
+          cart.reduce((accum,current)=>accum+current.price*current.quantity,0)
+      )
+      console.log(cart)
+  }
+    useEffect(()=>{
+      getTotal()
+      
+    })
+    
+    const item=cart.map(({ sku, quantity }) => ({ price : sku,quantity: quantity }))
+
    const checkoutOptions={
-       lineItems:[item],
+       lineItems:item,
        mode:'payment',
        successUrl: `${window.location.origin}/success`,
        cancelUrl: `${window.location.origin}/cancel`
@@ -47,14 +57,7 @@ export default function Cart() {
     })
     const [stripe,setStripe]=useState()
     
-    const getTotal = () => {
-      setTotal(
-        cart.reduce(
-          (acc, current) => acc + current.unit_amount * current.quantity,
-          0
-        )
-      )
-    }
+   
     useEffect(() => {
       setStripe(window.Stripe(process.env.STRIPE_PK))
       getTotal()
