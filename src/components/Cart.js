@@ -35,6 +35,7 @@ export default function Cart() {
     console.log("Strpe Checkout errror",error) 
 
    }
+   /*
     const getTotal=()=>{
         
         setTotal(
@@ -54,7 +55,7 @@ export default function Cart() {
         )
       )
     }
-   /* useEffect(() => {
+    useEffect(() => {
       setStripe(window.Stripe(process.env.STRIPE_PK))
       getTotal()
     }, [])
