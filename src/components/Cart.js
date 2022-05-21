@@ -44,6 +44,39 @@ export default function Cart() {
     useEffect(()=>{
         getTotal()
     })
+    const [stripe,setStripe]=useState()
+    
+    const getTotal = () => {
+      setTotal(
+        cart.reduce(
+          (acc, current) => acc + current.unit_amount * current.quantity,
+          0
+        )
+      )
+    }
+   /* useEffect(() => {
+      setStripe(window.Stripe(process.env.STRIPE_PK))
+      getTotal()
+    }, [])
+
+    const handleBuy = async event => {
+      event.preventDefault()
+      let item = cart.map(({ id, quantity }) => ({
+        price: id,
+        quantity: quantity,
+      }))
+      console.log(item)
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: item,
+        mode: "payment",
+        successUrl: process.env.SUCCESS_REDIRECT,
+        cancelUrl: process.env.CANCEL_REDIRECT,
+      })
+      if (error) {
+        throw error
+      }
+    }*/
+
   return (
   <StyledCart>
       <h2>Cart</h2>
@@ -82,3 +115,6 @@ export default function Cart() {
   </StyledCart>
   )
 }
+
+
+

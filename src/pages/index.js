@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import{Jumbo} from "../components/index"
 import {Seo} from "../components/index"
 import { Products } from "../components/index"
-
+import '@stripe/stripe-js';
 
 export const query=graphql`
 query GET_DATA {
