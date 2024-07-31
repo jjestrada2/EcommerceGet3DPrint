@@ -81,4 +81,4 @@ This project is licensed under the MIT License - see the [LICENSE](https://choos
 
 ## Contact🦻
 
-For support or inquiries, please contact [your email](mailto:your.email@example.com).
+For support or inquiries, please contact [Juan Estrada](mailto:your.email@example.com).
